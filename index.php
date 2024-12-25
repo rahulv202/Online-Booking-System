@@ -7,6 +7,11 @@ session_start();
 
 
 use App\Core\Route;
+use App\Middleware\CheckLoginMiddleware;
+use App\Middleware\CheckLogoutMiddleware;
+use App\Middleware\checkAdminRoleMiddleware;
+use App\Middleware\CheckProviderRoleMiddleware;
+use App\Middleware\CheckCustomerRoleMiddleware;
 
 
 $router = new Route();
