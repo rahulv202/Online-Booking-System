@@ -16,7 +16,8 @@ use App\Middleware\CheckCustomerRoleMiddleware;
 
 $router = new Route();
 // Define your routes here
-
+$router->get('/register', 'RegisterController@index', [CheckLoginMiddleware::class]);
+$router->post('/register', 'RegisterController@register', [CheckLoginMiddleware::class]);
 
 
 
