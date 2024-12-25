@@ -23,7 +23,11 @@ $router->post('/login', 'LoginController@login', [CheckLoginMiddleware::class]);
 $router->get('/dashboard', 'DashboardController@index', [CheckLogoutMiddleware::class]);
 $router->get('/logout', 'DashboardController@logout', [CheckLogoutMiddleware::class]);
 
-
+// Admin routes
+$router->get('/manage-users', 'UserController@manageUsers', [CheckLogoutMiddleware::class, CheckAdminRoleMiddleware::class]);
+$router->get('/edit-user/{id}', 'UserController@editUser', [CheckLogoutMiddleware::class, CheckAdminRoleMiddleware::class]);
+$router->post('/update-user', 'UserController@updateUser', [CheckLogoutMiddleware::class, CheckAdminRoleMiddleware::class]);
+$router->get('/delete-user/{id}', 'UserController@deleteUser', [CheckLogoutMiddleware::class, CheckAdminRoleMiddleware::class]);
 
 try {
     // Resolve the route
