@@ -54,6 +54,11 @@ $router->get('/provider/completed-booking/{id}', 'BookingController@completedBoo
 // Customer routes
 $router->get('/customer/all-available-services', 'ServiceController@manageServices', [CheckLogoutMiddleware::class, CheckCustomerRoleMiddleware::class]);
 $router->get('/customer/book-service/{id}', 'BookingController@bookService', [CheckLogoutMiddleware::class, CheckCustomerRoleMiddleware::class]);
+$router->get('/customer/my-bookings', 'BookingController@manageBookings', [CheckLogoutMiddleware::class, CheckCustomerRoleMiddleware::class]);
+$router->get('/customer/confirmed-booking/{id}', 'BookingController@confirmedBooking', [CheckLogoutMiddleware::class, CheckCustomerRoleMiddleware::class]);
+$router->get('/customer/cancelled-booking/{id}', 'BookingController@cancelledBooking', [CheckLogoutMiddleware::class, CheckCustomerRoleMiddleware::class]);
+$router->get('/customer/completed-booking/{id}', 'BookingController@completedBooking', [CheckLogoutMiddleware::class, CheckCustomerRoleMiddleware::class]);
+$router->get('/customer/delete-booking/{id}', 'BookingController@deleteBook', [CheckLogoutMiddleware::class, CheckCustomerRoleMiddleware::class]);
 try {
     // Resolve the route
     $router->resolve($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);

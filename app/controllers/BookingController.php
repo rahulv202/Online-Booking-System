@@ -46,9 +46,9 @@ class BookingController extends Controller
             }
             $this->view('bookings/list', ['bookings' => $bookings]);
         } else {
-            $bookings = $bookings->getAllData("status='confirmed' AND user_id={$_SESSION['id']}");
+            $bookings = $bookings->getAllData("status='confirmed' AND customer_id={$_SESSION['user_id']}");
             foreach ($bookings as &$booking) {
-                $services_data = $services_model->find("id={$booking['service_id']}"); //getAllData
+                $services_data = $services_model->find("id", $booking['service_id']); //getAllData
                 $booking['service_name'] = $services_data['name'];
                 $booking['service_description'] = $services_data['description'];
                 $booking['service_price'] = $services_data['price'];
@@ -62,7 +62,11 @@ class BookingController extends Controller
     {
         $bookings = Bookings::getInstance();
         if ($bookings->update(['status' => 'confirmed'], $booking_id)) {
-            $this->redirect("/{$_SESSION['user_role']}/manage-bookings");
+            if ($_SESSION['user_role'] == 'customer') {
+                $this->redirect("/{$_SESSION['user_role']}/my-bookings");
+            } else {
+                $this->redirect("/{$_SESSION['user_role']}/manage-bookings");
+            }
         } else {
             $error = "Failed to confirmed Booking.";
             $this->view('bookings/list', ['error' => $error]);
@@ -73,7 +77,11 @@ class BookingController extends Controller
     {
         $bookings = Bookings::getInstance();
         if ($bookings->update(['status' => 'canceled'], $booking_id)) {
-            $this->redirect("/{$_SESSION['user_role']}/manage-bookings");
+            if ($_SESSION['user_role'] == 'customer') {
+                $this->redirect("/{$_SESSION['user_role']}/my-bookings");
+            } else {
+                $this->redirect("/{$_SESSION['user_role']}/manage-bookings");
+            }
         } else {
             $error = "Failed to cancelled Booking.";
             $this->view('bookings/list', ['error' => $error]);
@@ -84,7 +92,11 @@ class BookingController extends Controller
     {
         $bookings = Bookings::getInstance();
         if ($bookings->update(['status' => 'completed'], $booking_id)) {
-            $this->redirect("/{$_SESSION['user_role']}/manage-bookings");
+            if ($_SESSION['user_role'] == 'customer') {
+                $this->redirect("/{$_SESSION['user_role']}/my-bookings");
+            } else {
+                $this->redirect("/{$_SESSION['user_role']}/manage-bookings");
+            }
         } else {
             $error = "Failed to completed Booking.";
             $this->view('bookings/list', ['error' => $error]);
