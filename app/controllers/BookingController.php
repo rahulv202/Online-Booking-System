@@ -90,4 +90,15 @@ class BookingController extends Controller
             $this->view('bookings/list', ['error' => $error]);
         }
     }
+
+    public function bookService($service_id)
+    {
+        $bookings_model = Bookings::getInstance();
+        if ($bookings_model->save(['service_id', 'customer_id', 'booking_date', 'time_slot', 'status'], [$service_id, $_SESSION['user_id'], date('Y-m-d'), date('H:i:s'), 'confirmed'])) {
+            $this->redirect("/{$_SESSION['user_role']}/all-available-services");
+        } else {
+            $error = "Failed to book service.";
+            $this->view('services/list', ['error' => $error]);
+        }
+    }
 }

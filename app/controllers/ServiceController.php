@@ -10,7 +10,12 @@ class ServiceController extends Controller
     public function  manageServices()
     {
         $service_model = Services::getInstance();
-        $services = $service_model->getAllData("provider_id={$_SESSION['user_id']}");
+        if ($_SESSION['user_role'] == 'customer') {
+            $services = $service_model->getAllData("id IN ( SELECT service_id FROM bookings GROUP BY service_id HAVING SUM(CASE WHEN status = 'confirmed' THEN 1 ELSE 0 END) = 0 )");
+        } else {
+            $services = $service_model->getAllData("provider_id={$_SESSION['user_id']}");
+        }
+
         $this->view('services/list', ['services' => $services]);
     }
 

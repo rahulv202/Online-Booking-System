@@ -16,8 +16,8 @@
                 <?php endif; ?>
                 <?php if ($user['role'] == 'customer') : ?>
                     <h3>Customer Actions</h3>
-                    <a href="/my-services" class="btn btn-primary">My Services</a>
-                    <a href="/my-bookings" class="btn btn-primary">My Bookings</a>
+                    <a href="/<?php echo $_SESSION['user_role']; ?>/all-available-services" class="btn btn-primary">All Available Services</a>
+                    <a href="/<?php echo $_SESSION['user_role']; ?>/my-bookings" class="btn btn-primary">My Bookings</a>
                 <?php endif; ?>
             </div>
         </div>

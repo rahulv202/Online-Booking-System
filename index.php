@@ -51,6 +51,9 @@ $router->get('/provider/confirmed-booking/{id}', 'BookingController@confirmedBoo
 $router->get('/provider/cancelled-booking/{id}', 'BookingController@cancelledBooking', [CheckLogoutMiddleware::class, CheckProviderRoleMiddleware::class]);
 $router->get('/provider/completed-booking/{id}', 'BookingController@completedBooking', [CheckLogoutMiddleware::class, CheckProviderRoleMiddleware::class]);
 
+// Customer routes
+$router->get('/customer/all-available-services', 'ServiceController@manageServices', [CheckLogoutMiddleware::class, CheckCustomerRoleMiddleware::class]);
+$router->get('/customer/book-service/{id}', 'BookingController@bookService', [CheckLogoutMiddleware::class, CheckCustomerRoleMiddleware::class]);
 try {
     // Resolve the route
     $router->resolve($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
