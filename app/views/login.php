@@ -15,7 +15,6 @@
             <!-- <input type="text" class="form-control" id="role" name="role" placeholder="Role" required> -->
             <select class="form-control" id="role" name="role">
                 <option value="">select role</option>
-                <option value="">select role</option>
                 <option value="admin">Admin</option>
                 <option value="provider">Service Provider</option>
                 <option value="customer">Customer</option>

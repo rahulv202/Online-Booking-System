@@ -9,6 +9,8 @@
                 <?php if ($user['role'] == 'admin') : ?>
                     <h3>Admin Actions</h3>
                     <a href="/manage-users" class="btn btn-primary">Manage Users</a>
+                    <a href="/manage-services" class="btn btn-primary">Manage Services</a>
+                    <a href="/manage-bookings" class="btn btn-primary">Manage Bookings</a>
                 <?php endif; ?>
             </div>
         </div>

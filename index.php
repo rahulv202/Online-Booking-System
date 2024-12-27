@@ -28,6 +28,16 @@ $router->get('/manage-users', 'UserController@manageUsers', [CheckLogoutMiddlewa
 $router->get('/edit-user/{id}', 'UserController@editUser', [CheckLogoutMiddleware::class, CheckAdminRoleMiddleware::class]);
 $router->post('/update-user', 'UserController@updateUser', [CheckLogoutMiddleware::class, CheckAdminRoleMiddleware::class]);
 $router->get('/delete-user/{id}', 'UserController@deleteUser', [CheckLogoutMiddleware::class, CheckAdminRoleMiddleware::class]);
+$router->get('/manage-services', 'ServiceController@manageServices', [CheckLogoutMiddleware::class, CheckAdminRoleMiddleware::class]);
+$router->get('/add-service', 'ServiceController@addService', [CheckLogoutMiddleware::class, CheckAdminRoleMiddleware::class]);
+$router->post('/add-service', 'ServiceController@saveService', [CheckLogoutMiddleware::class, CheckAdminRoleMiddleware::class]);
+$router->get('/edit-service/{id}', 'ServiceController@editService', [CheckLogoutMiddleware::class, CheckAdminRoleMiddleware::class]);
+$router->post('/update-service', 'ServiceController@updateService', [CheckLogoutMiddleware::class, CheckAdminRoleMiddleware::class]);
+$router->get('/delete-service/{id}', 'ServiceController@deleteService', [CheckLogoutMiddleware::class, CheckAdminRoleMiddleware::class]);
+$router->get('/manage-bookings', 'BookingController@manageBookings', [CheckLogoutMiddleware::class, CheckAdminRoleMiddleware::class]);
+$router->get('/confirmed-booking/{id}', 'BookingController@confirmedBooking', [CheckLogoutMiddleware::class, CheckAdminRoleMiddleware::class]);
+$router->get('/cancelled-booking/{id}', 'BookingController@cancelledBooking', [CheckLogoutMiddleware::class, CheckAdminRoleMiddleware::class]);
+$router->get('/completed-booking/{id}', 'BookingController@completedBooking', [CheckLogoutMiddleware::class, CheckAdminRoleMiddleware::class]);
 
 try {
     // Resolve the route
