@@ -23,9 +23,9 @@
                     <td><?php echo $booking['time_slot']; ?></td>
                     <td><?php echo $booking['status']; ?></td>
                     <td>
-                        <a href="/confirmed-booking/<?php echo $booking['id']; ?>" class="btn btn-sm btn-primary">Confirmed Booking</a>
-                        <a href="/cancelled-booking/<?php echo $booking['id']; ?>" class="btn btn-sm btn-danger">Cancelled Booking</a>
-                        <a href="/completed-booking/<?php echo $booking['id']; ?>" class="btn btn-sm btn-success">Completed Booking</a>
+                        <a href="/<?php echo $_SESSION['user_role']; ?>/confirmed-booking/<?php echo $booking['id']; ?>" class="btn btn-sm btn-primary">Confirmed Booking</a>
+                        <a href="/<?php echo $_SESSION['user_role']; ?>/cancelled-booking/<?php echo $booking['id']; ?>" class="btn btn-sm btn-danger">Cancelled Booking</a>
+                        <a href="/<?php echo $_SESSION['user_role']; ?>/completed-booking/<?php echo $booking['id']; ?>" class="btn btn-sm btn-success">Completed Booking</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

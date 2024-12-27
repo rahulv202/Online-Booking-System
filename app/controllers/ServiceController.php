@@ -10,7 +10,7 @@ class ServiceController extends Controller
     public function  manageServices()
     {
         $service_model = Services::getInstance();
-        $services = $service_model->getAllData();
+        $services = $service_model->getAllData("provider_id={$_SESSION['user_id']}");
         $this->view('services/list', ['services' => $services]);
     }
 
@@ -38,7 +38,7 @@ class ServiceController extends Controller
 
         $service_model = Services::getInstance();
         if ($service_model->save(['provider_id', 'name', 'description', 'price'], [$_SESSION['user_id'],  $name,  $description, $price])) {
-            $this->redirect('/manage-services');
+            $this->redirect("/{$_SESSION['user_role']}/manage-services");
         } else {
             $error = "Failed to save service.";
             $this->view('services/add', ['error' => $error]);
@@ -75,7 +75,7 @@ class ServiceController extends Controller
 
         $service_model = Services::getInstance();
         if ($service_model->update(['name' => $name, 'description' => $description, 'price' => $price], $id)) {
-            $this->redirect('/manage-services');
+            $this->redirect("/{$_SESSION['user_role']}/manage-services");
         } else {
             $error = "Failed to update service.";
             $this->view('services/edit', ['error' => $error]);
@@ -88,7 +88,7 @@ class ServiceController extends Controller
         $id = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
         $service_model = Services::getInstance();
         if ($service_model->delete($id)) {
-            $this->redirect('/manage-services');
+            $this->redirect("/{$_SESSION['user_role']}/manage-services");
         } else {
             $error = "Failed to delete service.";
             $this->view('services/list', ['error' => $error]);

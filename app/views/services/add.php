@@ -1,7 +1,7 @@
 <div class="container">
     <h1 class="mt-5">Add Service</h1>
     <?php if (!empty($error)) echo "<div class='alert alert-danger'>{$error}</div>"; ?>
-    <form action="/add-service" method="post">
+    <form action="/<?php echo $_SESSION['user_role']; ?>/add-service" method="post">
         <div class="form-group">
             <label for="name">Name</label>
             <input type="text" name="name" id="name" class="form-control" required>
@@ -17,5 +17,5 @@
         <button type="submit" class="btn btn-primary">Add Service</button>
     </form>
     <br>
-    <a href="/manage-services" class="btn btn-primary">Back to Manage Services</a>
+    <a href="/<?php echo $_SESSION['user_role']; ?>/manage-services" class="btn btn-primary">Back to Manage Services</a>
 </div>

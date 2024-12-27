@@ -1,7 +1,7 @@
 <div class="container">
     <h1 class="mt-5">Edit Service</h1>
     <?php if (!empty($error)) echo "<div class='alert alert-danger'>{$error}</div>"; ?>
-    <form action="/update-service" method="post">
+    <form action="/<?php echo $_SESSION['user_role']; ?>/update-service" method="post">
         <input type="hidden" name="id" value="<?php echo $service['id']; ?>">
         <div class="form-group">
             <label for="name">Name</label>
@@ -18,5 +18,5 @@
         <button type="submit" class="btn btn-primary">Update Service</button>
     </form>
     <br>
-    <a href="/manage-services" class="btn btn-primary">Back to Manage Services</a>
+    <a href="/<?php echo $_SESSION['user_role']; ?>/manage-services" class="btn btn-primary">Back to Manage Services</a>
 </div>

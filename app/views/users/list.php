@@ -19,8 +19,8 @@
                     <td><?php echo $user['email']; ?></td>
                     <td><?php echo $user['role']; ?></td>
                     <td>
-                        <a href="/edit-user/<?php echo $user['id']; ?>" class="btn btn-sm btn-primary">Edit</a>
-                        <a href="/delete-user/<?php echo $user['id']; ?>" class="btn btn-sm btn-danger">Delete</a>
+                        <a href="/<?php echo $_SESSION['user_role']; ?>/edit-user/<?php echo $user['id']; ?>" class="btn btn-sm btn-primary">Edit</a>
+                        <a href="/<?php echo $_SESSION['user_role']; ?>/delete-user/<?php echo $user['id']; ?>" class="btn btn-sm btn-danger">Delete</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

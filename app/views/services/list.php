@@ -1,6 +1,6 @@
 <div class="container">
     <h1 class="mt-5">Manage Services</h1>
-    <a href="/add-service" class="btn btn-primary">Add Service</a>
+    <a href="/<?php echo $_SESSION['user_role']; ?>/add-service" class="btn btn-primary">Add Service</a>
     <?php if (!empty($error)) echo "<div class='alert alert-danger'>{$error}</div>"; ?>
     <table class="table">
         <thead>
@@ -20,8 +20,8 @@
                     <td><?php echo $service['description']; ?></td>
                     <td><?php echo $service['price']; ?></td>
                     <td>
-                        <a href="/edit-service/<?php echo $service['id']; ?>" class="btn btn-sm btn-primary">Edit</a>
-                        <a href="/delete-service/<?php echo $service['id']; ?>" class="btn btn-sm btn-danger">Delete</a>
+                        <a href="/<?php echo $_SESSION['user_role']; ?>/edit-service/<?php echo $service['id']; ?>" class="btn btn-sm btn-primary">Edit</a>
+                        <a href="/<?php echo $_SESSION['user_role']; ?>/delete-service/<?php echo $service['id']; ?>" class="btn btn-sm btn-danger">Delete</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

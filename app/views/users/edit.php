@@ -1,7 +1,7 @@
 <div class="container">
     <h1 class="mt-5">Edit User</h1>
     <?php if (!empty($error)) echo "<div class='alert alert-danger'>{$error}</div>"; ?>
-    <form action="/update-user" method="post">
+    <form action="/<?php echo $_SESSION['user_role']; ?>/update-user" method="post">
         <input type="hidden" name="id" value="<?php echo $user['id']; ?>">
         <div class="form-group">
             <label for="name">Name</label>
@@ -21,5 +21,5 @@
         </div>
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
-    <a href="/manage-users" class="btn btn-secondary mt-3">Back to Manage Users</a>
+    <a href="/<?php echo $_SESSION['user_role']; ?>/manage-users" class="btn btn-secondary mt-3">Back to Manage Users</a>
 </div>

@@ -41,7 +41,7 @@ class UserController extends Controller
         }
         $user_model = Users::getInstance();
         if ($user_model->update(['name' => $name, 'email' => $email, 'role' => $role], $id)) {
-            $this->redirect('/manage-users');
+            $this->redirect("/{$_SESSION['user_role']}/manage-users");
         } else {
             $error = "Failed to update user.";
             $this->view('users/edit', ['user' => $_POST, 'error' => $error]);
@@ -52,7 +52,7 @@ class UserController extends Controller
     {
         $user_model = Users::getInstance();
         if ($user_model->delete($id)) {
-            $this->redirect('/manage-users');
+            $this->redirect("/{$_SESSION['user_role']}/manage-users");
         } else {
             $error = "Failed to delete user.";
             $this->view('users/list', ['error' => $error]);
